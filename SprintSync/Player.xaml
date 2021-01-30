@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SprintSync.Player">
+    <StackLayout>
+        <Frame BackgroundColor="MediumAquamarine" Padding="24" CornerRadius="0">
+            <Label Text="SprintSync" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+
+        <Button Text="Play" Clicked="Play" />
+        <Button Text="Stop" Clicked="Pause" />
+        <Button Text="Load File" Clicked="LoadFile"/>
+        <Button Text="+" Clicked="SpeedUp"/>
+        <Button Text="-" Clicked="SlowDown"/>
+        <Button Text="test" Clicked="testNav"/>
+        <Label x:Name="SpeedLabel" Text="" FontSize="Title" Padding="30,10,30,10" />
+    </StackLayout>
+    
+</ContentPage>
