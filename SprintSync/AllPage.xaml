@@ -9,8 +9,29 @@
             android:TabbedPage.BarItemColor="#66FFFFFF"
             android:TabbedPage.BarSelectedItemColor="White"
             x:Class="SprintSync.AllPage">
-    <!--Pages can be added as references or inline-->
-    <ContentPage Title="Tab 1" />
-    <ContentPage  IconImageSource="ic_directions_run.png" Title="Run" />
-    <local:Player IconImageSource="ic_play_arrow.png" Title="Player"/>
+
+    <!--LIBRARY PAGE VVVV-->
+    <ContentPage IconImageSource="lib.png" Title="Library" />
+
+    <!--RUN PAGE VVVV-->
+    <ContentPage IconImageSource="run.png" Title="Run" />
+
+    <!--PLAYER PAGE VVVV-->
+    <ContentPage IconImageSource="play.png" Title="Player" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+        <StackLayout>
+            <Frame BackgroundColor="MediumAquamarine" Padding="24" CornerRadius="0">
+                <Label Text="SprintSync" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            </Frame>
+
+            <Button Text="Play" Clicked="Play" />
+            <Button Text="Stop" Clicked="Pause" />
+            <Button Text="Load File" Clicked="LoadFile"/>
+            <Button Text="+" Clicked="SpeedUp"/>
+            <Button Text="-" Clicked="SlowDown"/>
+            <Button Text="test" Clicked="testNav"/>
+            <Label x:Name="SpeedLabel" Text="" FontSize="Title" Padding="30,10,30,10" />
+        </StackLayout>
+    
+    </ContentPage>
 </TabbedPage>

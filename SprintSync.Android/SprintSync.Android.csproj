@@ -74,11 +74,6 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="Resources\drawable\res\drawable-hdpi\ic_play_arrow.png" />
-    <None Include="Resources\drawable\res\drawable-xhdpi\.DS_Store" />
-    <None Include="Resources\drawable\res\drawable-xxhdpi\ic_play_arrow.png" />
-    <None Include="Resources\drawable\res\drawable-xxxhdpi\ic_play_arrow.png" />
-    <None Include="Resources\drawable\res\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
@@ -97,42 +92,69 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\drawable\ic_play_arrow.png">
+    <AndroidResource Include="Resources\drawable-hdpi\lib.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_play_arrow.png">
+    <AndroidResource Include="Resources\drawable-hdpi\play.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-mdpi\ic_play_arrow.png">
+    <AndroidResource Include="Resources\drawable-hdpi\run.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_arrow.png">
+    <AndroidResource Include="Resources\drawable-mdpi\lib.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_play_arrow.png">
+    <AndroidResource Include="Resources\drawable-mdpi\play.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_play_arrow.png">
+    <AndroidResource Include="Resources\drawable-mdpi\run.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_run.png">
+    <AndroidResource Include="Resources\drawable-xhdpi\lib.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_directions_run.png">
+    <AndroidResource Include="Resources\drawable-xhdpi\play.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xhdpi\run.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxhdpi\lib.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxhdpi\play.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxhdpi\run.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\lib.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\play.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\run.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
-    <Folder Include="Resources\drawable\res\drawable-mdpi\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SprintSync\SprintSync.csproj">
