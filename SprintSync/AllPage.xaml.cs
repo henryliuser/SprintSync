@@ -19,7 +19,7 @@ namespace SprintSync
 
         Queue<IMediaItem> q = new Queue<IMediaItem>();
         float target = 160F;
-        //string test = "https://ia800605.us.archive.org/32/items/Mp3Playlist_555/AaronNeville-CrazyLove.mp3";
+        string test = "https://ia800605.us.archive.org/32/items/Mp3Playlist_555/AaronNeville-CrazyLove.mp3";
 
         public AllPage()
         {
@@ -120,7 +120,6 @@ namespace SprintSync
         {
             await Navigation.PushAsync(new AllPage());
         }
-
 
     }
 }
