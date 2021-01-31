@@ -11,7 +11,15 @@
             x:Class="SprintSync.AllPage">
 
     <!--LIBRARY PAGE VVVV-->
-    <ContentPage IconImageSource="lib.png" Title="Library" />
+    <ContentPage IconImageSource="lib.png" Title="Library">
+        <StackLayout>
+            <Frame BackgroundColor="MediumAquamarine" Padding="24"/>
+            <Button BackgroundColor="Blue" Clicked="Add2Library"/>
+            <Button BackgroundColor="Gray" Clicked="CheckForFile"/>
+        </StackLayout>
+       
+    </ContentPage>
+        
 
     <!--RUN PAGE VVVV-->
     <ContentPage IconImageSource="run.png" Title="Run" />

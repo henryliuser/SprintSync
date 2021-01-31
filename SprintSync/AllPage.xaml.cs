@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MediaManager;
 using MediaManager.Library;
 using Plugin.FilePicker;
@@ -30,7 +27,53 @@ namespace SprintSync
         //----------------------------//
         //        LIBRARY CODE        //
         //----------------------------//
-        
+        private async void Add2Library(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync();
+                if (result != null)
+                {
+                    //API CALLS
+                    
+                    string localPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), result.FileName.Split('.')[0]) + ".txt";
+                    //string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "temp.txt");
+                    //File.CreateText($"{localPath}.txt");
+                    if (File.Exists(localPath)) File.WriteAllText(localPath, "helasdasderyone");
+                    if (File.Exists(localPath)) 
+                    {
+                        var x = File.ReadAllText(localPath);
+                        Console.WriteLine(x);
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                // idgaf
+            }
+            
+        }
+
+        public void CheckForFile(object sender, EventArgs e)
+        {
+            var allFiles = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            foreach (string s in allFiles)
+            {
+                (sender as Button).Text += s;
+            }
+        }
+
+        //private void ShowLibrary()
+        //{
+        //    var allFiles = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+        //    foreach (string s in allFiles)
+        //    {
+        //        (sender as Button).Text = base;
+        //    }
+
+
+        //}
 
         //----------------------------//
         //          RUN CODE          //
@@ -74,8 +117,17 @@ namespace SprintSync
             if (q.Count != 0)
             {
                 var item = q.Dequeue();
-                float mult = BPMtoMultiplier(90);
-                SetSpeed(BPMtoMultiplier(90));
+                //x = API stuff
+                //SetSpeed(BPMtoMultiplier(x));
+                //Queue<int[]> sectionQueue = new Queue<int[]>();
+                //foreach (int[] ts in sectionQueue)
+                //{
+                //    Device.StartTimer(new TimeSpan(0, 0, ts[0]), () =>
+                //    {
+                //        SetSpeed(ts[1]);
+                //        return false;
+                //    });
+                // }
                 await CrossMediaManager.Current.Play(item);
             }
             else await CrossMediaManager.Current.Stop();
