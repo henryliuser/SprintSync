@@ -8,7 +8,8 @@
             BarTextColor="White"
             android:TabbedPage.BarItemColor="#66FFFFFF"
             android:TabbedPage.BarSelectedItemColor="White"
-            x:Class="SprintSync.AllPage">
+            x:Class="SprintSync.AllPage"
+            xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
     <!--LIBRARY PAGE VVVV-->
     <ContentPage IconImageSource="lib.png" Title="Library">
@@ -32,12 +33,28 @@
                 <Label Text="SprintSync" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
             </Frame>
 
-            <Button Text="Play" Clicked="Play" />
-            <Button Text="Stop" Clicked="Pause" />
-            <Button Text="Load File" Clicked="LoadFile"/>
-            <Button Text="+" Clicked="SpeedUp"/>
-            <Button Text="-" Clicked="SlowDown"/>
-            <Button Text="test" Clicked="testNav"/>
+            <yummy:PancakeView CornerRadius="20,20,20,20" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
+                <yummy:PancakeView.BackgroundGradientStops>
+                    <yummy:GradientStopCollection>
+                        <yummy:GradientStop Color="LightSteelBlue" Offset="0" />
+                        <yummy:GradientStop Color="AliceBlue" Offset="0.5" />
+                        <yummy:GradientStop Color="CadetBlue" Offset="1" />
+                    </yummy:GradientStopCollection>
+                </yummy:PancakeView.BackgroundGradientStops>
+                <yummy:PancakeView.Shadow>
+                    <yummy:DropShadow BlurRadius="5"/>
+                </yummy:PancakeView.Shadow>
+                <StackLayout>
+                <Button Text="Play" Clicked="Play"/>
+                <Button Text="Stop" Clicked="Pause" />
+                <Button Text="Load File" Clicked="LoadFile"/>
+                <Button Text="+" Clicked="SpeedUp"/>
+                <Button Text="-" Clicked="SlowDown"/>
+                <Button Text="test" Clicked="testNav"/>
+                </StackLayout>
+            </yummy:PancakeView>
+            
+            
             <Label x:Name="SpeedLabel" Text="" FontSize="Title" Padding="30,10,30,10" />
         </StackLayout>
     
