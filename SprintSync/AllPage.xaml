@@ -12,51 +12,114 @@
             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
     <!--LIBRARY PAGE VVVV-->
-    <ContentPage IconImageSource="lib.png" Title="Library">
-        <StackLayout>
-            <Frame BackgroundColor="MediumAquamarine" Padding="24"/>
-            <Button BackgroundColor="Blue" Clicked="Add2Library"/>
-            <Button BackgroundColor="Gray" Clicked="CheckForFile"/>
-        </StackLayout>
+    <ContentPage x:Name="LibraryPage" IconImageSource="lib.png" Title="Library">
+        
+            <AbsoluteLayout>
+                <yummy:PancakeView BackgroundGradientStartPoint="0,0"
+                                   BackgroundGradientEndPoint="0,0.2"
+                                   AbsoluteLayout.LayoutBounds="0.5,0"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional">
+
+           <yummy:PancakeView.BackgroundGradientStops>
+              <yummy:GradientStopCollection>
+                 <yummy:GradientStop Color="#1976D3" Offset="0" />
+                 <yummy:GradientStop Color="#FFFFFF" Offset="0.5"/>
+
+              </yummy:GradientStopCollection>
+           </yummy:PancakeView.BackgroundGradientStops>
+                    </yummy:PancakeView>
+        
+                <ScrollView AbsoluteLayout.LayoutBounds="0.5,0.35,0.8,0.85"
+                            AbsoluteLayout.LayoutFlags="All"
+                            VerticalScrollBarVisibility="Never">
+                    <StackLayout x:Name="EntryList" AbsoluteLayout.LayoutBounds="0.5,0.4"
+                        AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                    </StackLayout>
+                </ScrollView>
+                <Button BackgroundColor="MediumAquamarine" Clicked="Add2Library"
+                        AbsoluteLayout.LayoutBounds="0.5,0.97"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                            HeightRequest="70" WidthRequest="70" Text="+" FontSize="30"
+                            CornerRadius="48"/>    
+            </AbsoluteLayout>
+            
+            
+
+                    
+        
        
     </ContentPage>
         
 
     <!--RUN PAGE VVVV-->
-    <ContentPage IconImageSource="run.png" Title="Run" />
+    <ContentPage x:Name="RunPage" IconImageSource="run.png" Title="Run" BackgroundColor="DarkSlateBlue">
+        <yummy:PancakeView BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,0.2">
+
+           <yummy:PancakeView.BackgroundGradientStops>
+              <yummy:GradientStopCollection>
+                 <yummy:GradientStop Color="#1976D3" Offset="0" />
+                 <yummy:GradientStop Color="#FFFFFF" Offset="0.5"/>
+
+              </yummy:GradientStopCollection>
+           </yummy:PancakeView.BackgroundGradientStops>
+
+            
+                <AbsoluteLayout>
+                    <Label HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.2"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           x:Name="TargetTempo" Text="0"
+                           FontSize="100" FontAttributes="Bold"/>
+                    <Slider VerticalOptions="CenterAndExpand" Value="160" AbsoluteLayout.LayoutBounds="0.5,0.5,320,30"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            Maximum="250" ValueChanged="OnSliderValueChanged"
+                            MinimumTrackColor="Orange" MaximumTrackColor="Orange"/>
+                    <Button Text="Go" FontSize="40" HorizontalOptions="Center" AbsoluteLayout.LayoutBounds="0.5, 0.8"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                            BackgroundColor="#44C7B3" CornerRadius="66" Clicked="StartRun"
+                            HeightRequest="110" WidthRequest="110" Padding="10" Margin="0"/>
+                </AbsoluteLayout>
+                
+                
+            
+
+        </yummy:PancakeView>
+        
+    </ContentPage>
+        
+        
 
     <!--PLAYER PAGE VVVV-->
-    <ContentPage IconImageSource="play.png" Title="Player" xmlns="http://xamarin.com/schemas/2014/forms"
+    <ContentPage x:Name="PlayerPage" IconImageSource="play.png" Title="Player" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-        <StackLayout>
-            <Frame BackgroundColor="MediumAquamarine" Padding="24" CornerRadius="0">
-                <Label Text="SprintSync" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-            </Frame>
 
-            <yummy:PancakeView CornerRadius="20,20,20,20" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,0">
-                <yummy:PancakeView.BackgroundGradientStops>
-                    <yummy:GradientStopCollection>
-                        <yummy:GradientStop Color="LightSteelBlue" Offset="0" />
-                        <yummy:GradientStop Color="AliceBlue" Offset="0.5" />
-                        <yummy:GradientStop Color="CadetBlue" Offset="1" />
-                    </yummy:GradientStopCollection>
-                </yummy:PancakeView.BackgroundGradientStops>
-                <yummy:PancakeView.Shadow>
-                    <yummy:DropShadow BlurRadius="5"/>
-                </yummy:PancakeView.Shadow>
-                <StackLayout>
-                <Button Text="Play" Clicked="Play"/>
-                <Button Text="Stop" Clicked="Pause" />
-                <Button Text="Load File" Clicked="LoadFile"/>
-                <Button Text="+" Clicked="SpeedUp"/>
-                <Button Text="-" Clicked="SlowDown"/>
-                <Button Text="test" Clicked="testNav"/>
-                </StackLayout>
-            </yummy:PancakeView>
-            
-            
-            <Label x:Name="SpeedLabel" Text="" FontSize="Title" Padding="30,10,30,10" />
-        </StackLayout>
+           <AbsoluteLayout>
+                <Frame AbsoluteLayout.LayoutBounds="0.5,0.15,0.8,0.6" BackgroundColor="CadetBlue"
+                       AbsoluteLayout.LayoutFlags="All" CornerRadius="60"/>
+                <Label x:Name="CurrentSong" AbsoluteLayout.LayoutBounds="0.5,0.7" FontSize="20"
+                       HorizontalOptions="Center" FontAttributes="Bold"
+                       AbsoluteLayout.LayoutFlags="PositionProportional" />
+                <Button Text="||" Clicked="PlayPause" AbsoluteLayout.LayoutBounds="0.5,0.87,120,120"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" CornerRadius="60"
+                        FontSize="50"/>
+                <!--<Button Text="Load File" Clicked="LoadFile"/>-->
+                <Button Text="+" Clicked="SpeedUp" AbsoluteLayout.LayoutBounds="0.97,0.85,50,50"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" CornerRadius="36"
+                        FontSize="20"/>
+                <Button Text="-" Clicked="SlowDown" AbsoluteLayout.LayoutBounds="0.03,0.85,50,50"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" CornerRadius="36"
+                        FontSize="20"/>
+                <Button Text="->" Clicked="Next" AbsoluteLayout.LayoutBounds="0.8,0.85,65,65"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" CornerRadius="45"
+                        FontSize="30"/>
+                <Button x:Name="lt" Text="-" Clicked="Last" AbsoluteLayout.LayoutBounds="0.2,0.85,65,65"
+                        AbsoluteLayout.LayoutFlags="PositionProportional" CornerRadius="45"
+                        FontSize="30"/>
+                <Label x:Name="SpeedLabel" Text="" FontSize="Title" Padding="30,10,30,10"
+                       AbsoluteLayout.LayoutBounds="0.5,0.97" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+           </AbsoluteLayout>
+                
+        
     
     </ContentPage>
 </TabbedPage>

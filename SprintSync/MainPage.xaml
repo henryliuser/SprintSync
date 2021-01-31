@@ -1,7 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SprintSync.MainPage">
-
+             x:Class="SprintSync.MainPage"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <!--<yummy:PancakeView
+            Margin="16"
+            BackgroundGradientAngle="45"
+            BackgroundGradientEndColor="Azure"
+            BackgroundGradientStartColor="LightSkyBlue"
+            CornerRadius="32,0,0,32"
+            HasShadow="True"
+            HeightRequest="100"
+            VerticalOptions="CenterAndExpand">
+            <Label
+                Margin="16,0"
+                FontSize="50"
+                Text="PancakeView"
+                VerticalOptions="Center" />
+        </yummy:PancakeView>-->
     
 </ContentPage>
