@@ -44,50 +44,63 @@
                             CornerRadius="48"/>    
             </AbsoluteLayout>
             
-            
-
-                    
-        
-       
+           
     </ContentPage>
-        
+    
 
     <!--RUN PAGE VVVV-->
-    <ContentPage x:Name="RunPage" IconImageSource="run.png" Title="Run" BackgroundColor="DarkSlateBlue">
-        <yummy:PancakeView BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,0.2">
-
-           <yummy:PancakeView.BackgroundGradientStops>
-              <yummy:GradientStopCollection>
-                 <yummy:GradientStop Color="#1976D3" Offset="0" />
-                 <yummy:GradientStop Color="#FFFFFF" Offset="0.5"/>
-
-              </yummy:GradientStopCollection>
-           </yummy:PancakeView.BackgroundGradientStops>
+    <ContentPage x:Name="RunPage" IconImageSource="run.png" Title="Run" BackgroundColor="White">
+        
 
             
-                <AbsoluteLayout>
-                    <Label HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.2"
-                           AbsoluteLayout.LayoutFlags="PositionProportional"
-                           x:Name="TargetTempo" Text="0"
-                           FontSize="100" FontAttributes="Bold"/>
-                    <Slider VerticalOptions="CenterAndExpand" Value="160" AbsoluteLayout.LayoutBounds="0.5,0.5,320,30"
+        <AbsoluteLayout>
+            <Label HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.05"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
-                            Maximum="250" ValueChanged="OnSliderValueChanged"
-                            MinimumTrackColor="Orange" MaximumTrackColor="Orange"/>
-                    <Button Text="Go" FontSize="40" HorizontalOptions="Center" AbsoluteLayout.LayoutBounds="0.5, 0.8"
-                           AbsoluteLayout.LayoutFlags="PositionProportional"
-                            BackgroundColor="#44C7B3" CornerRadius="66" Clicked="StartRun"
-                            HeightRequest="110" WidthRequest="110" Padding="10" Margin="0"/>
-                </AbsoluteLayout>
+                            Text="Set Constant Tempo" FontSize="20"/>
+            <Label HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.2"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    x:Name="TargetTempo" Text="0"
+                    FontSize="100" FontAttributes="Bold"/>
+            <Slider VerticalOptions="CenterAndExpand" Value="160" AbsoluteLayout.LayoutBounds="0.5,0.5,320,30"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Maximum="250" ValueChanged="OnSliderValueChanged"
+                    MinimumTrackColor="Orange" MaximumTrackColor="Orange"/>
+            <Button Text="Go" FontSize="40" HorizontalOptions="Center" AbsoluteLayout.LayoutBounds="0.5, 0.8"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    BackgroundColor="#44C7B3" CornerRadius="66" Clicked="StartRun"
+                    HeightRequest="110" WidthRequest="110" Padding="10" Margin="0"/>
+                    
+        </AbsoluteLayout>
                 
                 
             
 
-        </yummy:PancakeView>
+
         
     </ContentPage>
         
-        
+    <!--GYRO PAGE-->
+    <ContentPage x:Name="GyroPage" IconImageSource="gyro.png" Title="Auto">
+        <AbsoluteLayout>
+            <Label HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.05"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            Text="Detect Tempo with Accelerometer" FontSize="20"/>
+            <Label HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.2"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            x:Name="AvgBPM" Text="0"
+                            FontSize="100" FontAttributes="Bold"/>
+            <Button x:Name="ToggleGyro" Text="Start Tracking" Clicked="Start_Accelerometer"
+                            AbsoluteLayout.LayoutBounds="0.5,0.8,130,90"
+                            AbsoluteLayout.LayoutFlags="PositionProportional" CornerRadius="50"
+                            FontSize="19"/>
+            <Label x:Name="LabelX" Text="0.0" AbsoluteLayout.LayoutBounds="0.3, 0.6"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <Label x:Name="LabelY" Text="0.0" AbsoluteLayout.LayoutBounds="0.5, 0.6"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <Label x:Name="LabelZ" Text="0.0" AbsoluteLayout.LayoutBounds="0.7, 0.6"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>
+    </ContentPage>
 
     <!--PLAYER PAGE VVVV-->
     <ContentPage x:Name="PlayerPage" IconImageSource="play.png" Title="Player" xmlns="http://xamarin.com/schemas/2014/forms"

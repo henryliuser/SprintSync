@@ -14,6 +14,7 @@ using Xamarin.Forms.Xaml;
 using sonic;
 using System.Text;
 using System.Threading;
+using System.Collections;
 
 namespace SprintSync
 {
@@ -29,11 +30,12 @@ namespace SprintSync
         {
             InitializeComponent();
             ShowLibrary();
-            lt.Text = "<-";
+            lt.Text = "<-";  // no idea why the xaml way doesn't work
             //ClearLocal();
+            void CurrentPageHasChanged(object sender, EventArgs e) => AvgBPM.Text=$"{target}";
         }
 
-
+       
         //----------------------------//
         //        LIBRARY CODE        //
         //----------------------------//
@@ -153,6 +155,90 @@ namespace SprintSync
             this.CurrentPage = PlayerPage;
         }
 
+
+        int RunningBPM = 0;
+        List<float> accelx = new List<float>();
+        ArrayList accely = new ArrayList();
+        ArrayList accelz = new ArrayList();
+        float current_avg_running_BPM = 0;
+        bool running = false;
+
+        private void Start_Accelerometer(object sender, EventArgs e)
+        {
+
+            if (running) { Stop_Accelerometer(sender, e); return; }
+            else running = true;
+            ToggleGyro.Text = "Stop Tracking";
+            Play();
+            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+            Accelerometer.Start(SensorSpeed.UI);
+            Device.StartTimer(new TimeSpan(0, 0, 4), () =>
+            {
+                List<float> accelx_copy = accelx;
+
+                //float total_length = 0;
+                //foreach (float length in accelx_copy)
+                //{
+                //    total_length += length;
+                //}
+
+                //float mean_length = total_length / accelx_copy.Count;
+
+                int num_steps = 0;
+                for (int i = 1; i < accelx_copy.Count - 1; i++)
+                {
+                    if (accelx_copy[i] > 1.3 && accelx_copy[i] > accelx_copy[i - 1] && accelx_copy[i] > accelx_copy[i + 1])
+                    {
+                        num_steps++;
+                    }
+                }
+
+
+                //Console.WriteLine(num_steps);
+                current_avg_running_BPM = num_steps * 16;
+                target = current_avg_running_BPM;
+                //Console.WriteLine(current_avg_running_BPM);
+                AvgBPM.Text = $"{current_avg_running_BPM}";
+                if (playing)
+                    try { SetSpeed(BPMtoMultiplier(bpmOfCurrent)); }
+                    catch (Exception ex) { }
+                accelx.Clear();
+                return running;
+            });
+            
+        }
+
+        private void Stop_Accelerometer(System.Object sender, System.EventArgs e)
+        {
+            if (!Accelerometer.IsMonitoring) return;
+
+            running = false;
+            ToggleGyro.Text = "Start Tracking";
+            Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+            Accelerometer.Stop();
+
+        }
+
+        private void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
+        {
+            float xReading = e.Reading.Acceleration.X;
+            float yReading = e.Reading.Acceleration.Y;
+            float zReading = e.Reading.Acceleration.Z;
+            LabelX.Text = $"{xReading:F2}";
+            LabelY.Text = $"{yReading:F2}";
+            LabelZ.Text = $"{zReading:F2}";
+
+            accelx.Add(e.Reading.Acceleration.Length());
+
+            //Console.WriteLine(accelx.ToArray());
+            //accelx.ForEach(Console.WriteLine);
+            //Console.WriteLine(running);
+            //Console.WriteLine()
+
+
+
+        }
+
         //---------------------------//
         //        PLAYER CODE        //
         //---------------------------//
@@ -184,7 +270,7 @@ namespace SprintSync
 
 
         }
-
+        float bpmOfCurrent = 0;
         private async void Play(object sender=null)
         {
             if (q.Count != 0)
@@ -205,16 +291,18 @@ namespace SprintSync
 
                 int[] ts = sectionQueue.Dequeue();
                 SetSpeed(BPMtoMultiplier(ts[1]));
-                //Device.StartTimer(new TimeSpan(0, 0, ts[0]), () =>  // Keep or not ??
-                //{
-                //    if (sectionQueue.Count != 0)
-                //    {
-                //        ts = sectionQueue.Dequeue();
-                //        SetSpeed(BPMtoMultiplier(ts[1]));
-                //        return true;
-                //    }
-                //    return false;
-                //});
+                bpmOfCurrent = ts[1];
+                Device.StartTimer(new TimeSpan(0, 0, ts[0]), () =>  // Keep or not ??
+                {
+                    if (sectionQueue.Count != 0)
+                    {
+                        ts = sectionQueue.Dequeue();
+                        SetSpeed(BPMtoMultiplier(ts[1]));
+                        bpmOfCurrent = ts[1];
+                        return true;
+                    }
+                    return false;
+                });
                 var generatedMediaItem =
                         await CrossMediaManager.Current
                         .Extractor.CreateMediaItem(item);
@@ -254,7 +342,7 @@ namespace SprintSync
             SpeedLabel.Text = $"{spd:F2}x";
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
             {
-                CrossMediaManager.Current.Speed = spd; return false;
+                CrossMediaManager.Current.Speed = spd; return false; // evil hack
             });
             //Thread.Sleep(50);
             //CrossMediaManager.Current.Speed = spd;
